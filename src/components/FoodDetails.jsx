@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import toast from "react-hot-toast";
 import { Link, useParams } from "react-router-dom";
 
 const FoodDetails = () => {
@@ -34,7 +35,7 @@ const FoodDetails = () => {
 
   const handlePurchase = () => {
     // Placeholder for purchase functionality (e.g., add to cart)
-    alert(`You have purchased ${name}!`);
+    toast.success(`You have purchased ${name}!`);
   };
 
   return (

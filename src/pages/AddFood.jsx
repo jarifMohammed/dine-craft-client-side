@@ -39,7 +39,7 @@ const AddFood = () => {
 
     try{
         // Send the formData to the backend via API call
-    const { data } = await axios.post(`${import.meta.env.VITE_URL}/add-foods`, formData);
+    const { data } = await axios.post(`${import.meta.env.VITE_URL}/add-foods`, formData,{withCredentials:true});
     form.reset()
     toast.success('Food Added Successfully')
     navigate('/my-foods')

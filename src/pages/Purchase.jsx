@@ -30,7 +30,7 @@ const Purchase = () => {
 
   const fetchFood = async () => {
     try {
-      const { data } = await axios.get(`${import.meta.env.VITE_URL}/food/${id}`);
+      const { data } = await axios.get(`${import.meta.env.VITE_URL}/food/${id}`,{withCredentials:true});
       setFood(data);
 
       // Show toast if product is not available and toast hasn't already been shown
@@ -73,7 +73,7 @@ const Purchase = () => {
 
     try {
       // Send purchase data to the backend
-      await axios.post(`${import.meta.env.VITE_URL}/purchase`, purchaseData);
+      await axios.post(`${import.meta.env.VITE_URL}/purchase`, purchaseData,{withCredentials:true});
       toast.success("Purchase successful!");
       navigate('/my-orders');
     } catch (error) {

@@ -17,7 +17,8 @@ const AllOrders = () => {
     const fetchAllOrders = async () => {
         try {
             const { data } = await axios.get(
-                `${import.meta.env.VITE_URL}/all-orders/${user?.email}`
+                `${import.meta.env.VITE_URL}/all-orders/${user?.email}`,
+                {withCredentials:true}
             );
             setOrders(data);
             setOrderCount(data.length); // Set the count of orders

@@ -17,7 +17,8 @@ const MyFoods = () => {
   const fetchAllFoods = async () => {
     try {
       const { data } = await axios.get(
-        `${import.meta.env.VITE_URL}/foods/${user?.email}`
+        `${import.meta.env.VITE_URL}/foods/${user?.email}`,
+        {withCredentials:true}
       );
       setFoods(data);
     } catch (error) {

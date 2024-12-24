@@ -17,7 +17,7 @@ const MyOrders = () => {
   const fetchAllOrders = async () => {
     try {
       const { data } = await axios.get(
-        `${import.meta.env.VITE_URL}/orders/${user?.email}`
+        `${import.meta.env.VITE_URL}/orders/${user?.email}`,{withCredentials:true}
       );
       setOrders(data);
     } catch (error) {
