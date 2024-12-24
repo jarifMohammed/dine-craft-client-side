@@ -80,8 +80,8 @@ const MyOrders = () => {
                         {order.foodName}
                       </td>
                       <td className="px-4 py-4 text-sm text-gray-700">
-                        ${order.price.toFixed(2)}
-                      </td>
+      {Number(order.price).toFixed(2)}
+    </td>
                       <td className="px-4 py-4 text-sm text-gray-700">
                         {order.quantity}
                       </td>

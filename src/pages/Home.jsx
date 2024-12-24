@@ -1,6 +1,7 @@
 // import Carousel from '../components/Carousel'
 
 import Banner from "../components/Banner"
+import TopFoods from "../components/TopFoods"
 
 
 const Home = () => {
@@ -8,6 +9,7 @@ const Home = () => {
     <div>
       {/* <Carousel /> */}
      <Banner></Banner>
+    <TopFoods></TopFoods>
     </div>
   )
 }
