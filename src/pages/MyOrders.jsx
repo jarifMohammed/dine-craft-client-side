@@ -1,37 +1,36 @@
-import { useContext, useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { AuthContext } from "../providers/AuthProvider";
 import axios from "axios";
 import toast from "react-hot-toast";
 
-const MyFoods = () => {
+const MyOrders = () => {
   const { user } = useContext(AuthContext);
-  const [foods, setFoods] = useState([]);
+  const [orders, setOrders] = useState([]);
 
   useEffect(() => {
     if (user?.email) {
-      fetchAllFoods();
+      fetchAllOrders();
     }
   }, [user]);
 
-  const fetchAllFoods = async () => {
+  const fetchAllOrders = async () => {
     try {
       const { data } = await axios.get(
-        `${import.meta.env.VITE_URL}/foods/${user?.email}`
+        `${import.meta.env.VITE_URL}/orders/${user?.email}`
       );
-      setFoods(data);
+      setOrders(data);
     } catch (error) {
-      console.error("Error fetching foods:", error);
-      toast.error("Failed to fetch your foods.");
+      console.error("Error fetching orders:", error);
+      toast.error("Failed to fetch your orders.");
     }
   };
-
-  // Handle food deletion
+  // delete
   const handleDelete = async (id) => {
     try {
-      await axios.delete(`${import.meta.env.VITE_URL}/food/${id}`);
+      await axios.delete(`${import.meta.env.VITE_URL}/orders/${id}`);
       toast.success("Food item deleted successfully!");
-      fetchAllFoods(); // Refresh the list after deletion
+      fetchAllOrders(); // Refresh the list after deletion
     } catch (error) {
       console.error("Error deleting food:", error);
       toast.error("Failed to delete the food item.");
@@ -41,9 +40,9 @@ const MyFoods = () => {
   return (
     <section className="container px-4 mx-auto pt-12">
       <div className="flex items-center gap-x-3">
-        <h2 className="text-lg font-medium text-gray-800">My Added Foods</h2>
+        <h2 className="text-lg font-medium text-gray-800">My Orders</h2>
         <span className="px-3 py-1 text-xs text-blue-600 bg-blue-100 rounded-full">
-          {foods.length}
+          {orders.length}
         </span>
       </div>
 
@@ -55,16 +54,19 @@ const MyFoods = () => {
                 <thead className="bg-gray-50">
                   <tr>
                     <th className="py-3.5 px-4 text-sm font-normal text-gray-500 text-left">
-                      Title
+                      Food Name
                     </th>
                     <th className="px-4 py-3.5 text-sm font-normal text-gray-500 text-left">
                       Price
                     </th>
                     <th className="px-4 py-3.5 text-sm font-normal text-gray-500 text-left">
-                      Category
+                      Quantity
                     </th>
                     <th className="px-4 py-3.5 text-sm font-normal text-gray-500 text-left">
-                      Description
+                      Buyer Name
+                    </th>
+                    <th className="px-4 py-3.5 text-sm font-normal text-gray-500 text-left">
+                      Buying Date
                     </th>
                     <th className="px-4 py-3.5 text-sm font-normal text-gray-500 text-left">
                       Actions
@@ -72,36 +74,26 @@ const MyFoods = () => {
                   </tr>
                 </thead>
                 <tbody className="bg-white divide-y divide-gray-200">
-                  {foods.map((food) => (
-                    <tr key={food._id}>
+                  {orders.map((order) => (
+                    <tr key={order._id}>
                       <td className="px-4 py-4 text-sm text-gray-700">
-                        {food.name}
+                        {order.foodName}
                       </td>
                       <td className="px-4 py-4 text-sm text-gray-700">
-                        ${food.price}
-                      </td>
-                      <td className="px-4 py-4 text-sm">
-                        <span
-                          className={`px-3 py-1 text-xs rounded-full ${
-                            food.category === "Fast Food"
-                              ? "bg-blue-100 text-blue-600"
-                              : food.category === "Drinks"
-                              ? "bg-green-100 text-green-600"
-                              : "bg-red-100 text-red-600"
-                          }`}
-                        >
-                          {food.category}
-                        </span>
+                        ${order.price.toFixed(2)}
                       </td>
                       <td className="px-4 py-4 text-sm text-gray-700">
-                        {food.description.substring(0, 18)}...
+                        {order.quantity}
+                      </td>
+                      <td className="px-4 py-4 text-sm text-gray-700">
+                        {order.buyerName}
+                      </td>
+                      <td className="px-4 py-4 text-sm text-gray-700">
+                        {new Date(order.buyingDate).toLocaleDateString()}
                       </td>
                       <td className="px-4 py-4 text-sm">
                         <div className="flex items-center gap-x-6">
-                          <button
-                            onClick={() => handleDelete(food._id)}
-                            className="text-gray-500 hover:text-red-500 focus:outline-none"
-                          >
+                          <button onClick={()=>handleDelete(order._id)} className="text-gray-500 hover:text-red-500 focus:outline-none">
                             <svg
                               xmlns="http://www.w3.org/2000/svg"
                               fill="none"
@@ -118,7 +110,7 @@ const MyFoods = () => {
                             </svg>
                           </button>
                           <Link
-                            to={`/update/${food._id}`}
+                            to="#"
                             className="text-gray-500 hover:text-yellow-500 focus:outline-none"
                           >
                             <svg
@@ -140,6 +132,16 @@ const MyFoods = () => {
                       </td>
                     </tr>
                   ))}
+                  {orders.length === 0 && (
+                    <tr>
+                      <td
+                        colSpan="6"
+                        className="px-4 py-4 text-center text-sm text-gray-500"
+                      >
+                        No orders found.
+                      </td>
+                    </tr>
+                  )}
                 </tbody>
               </table>
             </div>
@@ -150,4 +152,4 @@ const MyFoods = () => {
   );
 };
 
-export default MyFoods;
+export default MyOrders;

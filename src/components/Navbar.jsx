@@ -69,7 +69,10 @@ const Navbar = () => {
               </li>
               
               <li>
-                <Link to="/my-orders">My Orders</Link>
+                <Link to="/my-orders">My Orders (for customer)</Link>
+              </li>
+              <li>
+                <Link to="/all-orders">All Orders (for admin)</Link>
               </li>
               <li className="mt-2">
                 <button

@@ -1,14 +1,28 @@
 import axios from 'axios';
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState, useRef } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { AuthContext } from '../providers/AuthProvider';
+import toast from 'react-hot-toast';
 
 const Purchase = () => {
   const { id } = useParams();
   const navigate = useNavigate();
   const { user } = useContext(AuthContext); // Access logged-in user info
   const [food, setFood] = useState({});
-  const [quantity, setQuantity] = useState(1); // Default quantity to 1
+  const [purchaseQuantity, setPurchaseQuantity] = useState(); // Default quantity to 1
+  const currentDate = new Date();
+  const toastShown = useRef(false); // To avoid duplicate toasts
+
+  const {
+    name,
+    image,
+    category,
+    quantity: availableQuantity, // Available stock
+    price,
+    description,
+    addBy,
+    _id,
+  } = food || {};
 
   useEffect(() => {
     fetchFood();
@@ -18,6 +32,12 @@ const Purchase = () => {
     try {
       const { data } = await axios.get(`${import.meta.env.VITE_URL}/food/${id}`);
       setFood(data);
+
+      // Show toast if product is not available and toast hasn't already been shown
+      if (data.quantity === 0 && !toastShown.current) {
+        toast.error("This product is not available");
+        toastShown.current = true; // Mark the toast as shown
+      }
     } catch (error) {
       console.error("Failed to fetch food data:", error);
     }
@@ -26,27 +46,39 @@ const Purchase = () => {
   const handlePurchase = async (e) => {
     e.preventDefault();
 
+    if (addBy?.addedBy === user?.email) {
+      return toast.error("You cannot buy your own food item.");
+    }
+
+    if (availableQuantity === 0) {
+      return toast.error("This item is not available");
+    }
+
+    // Validate purchase quantity
+    if (purchaseQuantity > availableQuantity || purchaseQuantity <= 0) {
+      return toast.error("Invalid quantity. Please ensure it does not exceed available stock.");
+    }
+
     // Prepare purchase data
     const purchaseData = {
-      foodId: food._id,
-      foodName: food.name,
-      price: food.price,
-      quantity,
+      foodId: _id,
+      foodName: name,
+      price,
+      quantity: purchaseQuantity,
       buyerName: user?.displayName || "Anonymous",
       buyerEmail: user?.email || "No Email",
-      buyingDate: Date.now(),
+      buyingDate: currentDate,
+      addBy: addBy?.addedBy
     };
 
     try {
       // Send purchase data to the backend
       await axios.post(`${import.meta.env.VITE_URL}/purchase`, purchaseData);
-      // Show success toast
-      alert("Purchase successful!");
-      // Redirect to a different page (e.g., the home page or order history)
-      navigate('/orders');
+      toast.success("Purchase successful!");
+      navigate('/my-orders');
     } catch (error) {
       console.error("Failed to make purchase:", error);
-      alert("Something went wrong with your purchase.");
+      toast.error("Something went wrong with your purchase.");
     }
   };
 
@@ -57,37 +89,53 @@ const Purchase = () => {
           <div className="p-8">
             <h2 className="text-3xl font-bold text-gray-800 mb-6">Purchase Food</h2>
             <form onSubmit={handlePurchase}>
+              {/* Food Name */}
               <div className="mb-4">
                 <label className="block text-lg font-semibold text-gray-700">Food Name</label>
                 <input
                   type="text"
-                  value={food.name}
+                  value={name}
                   readOnly
                   className="mt-2 p-2 w-full border rounded-lg"
                 />
               </div>
 
+              {/* Price */}
               <div className="mb-4">
                 <label className="block text-lg font-semibold text-gray-700">Price</label>
                 <input
                   type="text"
-                  value={`$${food.price}`}
+                  value={`$${price}`}
                   readOnly
                   className="mt-2 p-2 w-full border rounded-lg"
                 />
               </div>
 
+              {/* Available Quantity */}
               <div className="mb-4">
-                <label className="block text-lg font-semibold text-gray-700">Quantity</label>
+                <label className="block text-lg font-semibold text-gray-700">Available Quantity</label>
                 <input
                   type="number"
-                  min="1"
-                  value={quantity}
-                  onChange={(e) => setQuantity(e.target.value)}
+                  value={availableQuantity}
+                  readOnly
                   className="mt-2 p-2 w-full border rounded-lg"
                 />
               </div>
 
+              {/* Purchase Quantity */}
+              <div className="mb-4">
+                <label className="block text-lg font-semibold text-gray-700">Purchase Quantity</label>
+                <input
+                  type="number"
+                  min="1"
+                  value={purchaseQuantity}
+                  onChange={(e) => setPurchaseQuantity(parseInt(e.target.value))}
+                  className="mt-2 p-2 w-full border rounded-lg"
+                 required
+                />
+              </div>
+
+              {/* Buyer Name */}
               <div className="mb-4">
                 <label className="block text-lg font-semibold text-gray-700">Buyer Name</label>
                 <input
@@ -98,6 +146,7 @@ const Purchase = () => {
                 />
               </div>
 
+              {/* Buyer Email */}
               <div className="mb-4">
                 <label className="block text-lg font-semibold text-gray-700">Buyer Email</label>
                 <input
@@ -108,10 +157,23 @@ const Purchase = () => {
                 />
               </div>
 
+              {/* Buying Date */}
+              <div className="mb-4">
+                <label className="block text-lg font-semibold text-gray-700">Buying Date</label>
+                <input
+                  type="text"
+                  value={currentDate.toLocaleString()}
+                  readOnly
+                  className="mt-2 p-2 w-full border rounded-lg"
+                />
+              </div>
+
+              {/* Submit Button */}
               <div className="mb-6 text-center">
                 <button
                   type="submit"
                   className="px-6 py-3 bg-blue-500 text-white font-semibold rounded-lg shadow-md hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-300"
+                   
                 >
                   Purchase
                 </button>
