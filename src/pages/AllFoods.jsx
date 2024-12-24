@@ -68,7 +68,7 @@ const AllFoods = () => {
               <FoodCard key={food._id} food={food} />
             ))
           ) : (
-            <p>No foods found</p> // Display message if no foods are found
+            <p className='text-center text-4xl'>No foods found</p> // Display message if no foods are found
           )}
         </div>
       </div>
