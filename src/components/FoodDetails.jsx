@@ -39,7 +39,7 @@ const FoodDetails = () => {
   };
 
   return (
-    <div className="container mx-auto m-20 p-8">
+    <div className="container mx-auto b m-20 p-8">
       {Object.keys(food).length > 0 ? (
         <div className="max-w-4xl mx-auto bg-white rounded-lg shadow-lg overflow-hidden">
           <div className="flex justify-center pt-8">
@@ -57,9 +57,9 @@ const FoodDetails = () => {
               </span>
             </div>
             <p className="text-gray-600 mb-6">{description}</p>
-            <div className="space-y-4">
+            <div className=" text-red-500 space-y-4">
               <p className="text-lg">
-                <span className="font-semibold">Price:</span> ${price}
+                <span className=" font-semibold">Price:</span> ${price}
               </p>
               <p className="text-lg">
                 <span className="font-semibold">Quantity Available:</span> {quantity}
