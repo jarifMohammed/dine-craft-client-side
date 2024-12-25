@@ -18,7 +18,10 @@ const TopFoods = () => {
       try {
         const response = await fetch(`${import.meta.env.VITE_URL}/top-foods`);
         const data = await response.json();
-        setTopFoods(data);
+        // Filter out foods with total_sold === 0
+        const filteredFoods = data.filter((food) => food.total_sold > 0);
+        setTopFoods(filteredFoods);
+        console.log(filteredFoods);
       } catch (error) {
         console.error('Error fetching top foods:', error);
       }
