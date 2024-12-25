@@ -5,7 +5,7 @@ import Footer from '../components/Footer'
 
 const Main = () => {
   return (
-    <div>
+    <div className=' smooth={true} duration={500}'>
       {/* Navbar */}
       <Navbar 
       

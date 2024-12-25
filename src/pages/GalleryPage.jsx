@@ -8,16 +8,17 @@ function GalleryPage() {
 
   // Array of image sources for the gallery
   const images = [
-    "https://i.ibb.co/FmcMgc1/21497308-597.jpg", // Image 1
-    "https://i.ibb.co/FmcMgc1/21497308-597.jpg", // Image 2
-    "https://i.ibb.co/FmcMgc1/21497308-597.jpg", // Image 3
-    "https://i.ibb.co/FmcMgc1/21497308-597.jpg",
-    "https://i.ibb.co/FmcMgc1/21497308-597.jpg",
-    "https://i.ibb.co/FmcMgc1/21497308-597.jpg",
-    "https://i.ibb.co/FmcMgc1/21497308-597.jpg",
-    "https://i.ibb.co/FmcMgc1/21497308-597.jpg",
-    "https://i.ibb.co/FmcMgc1/21497308-597.jpg",
-    "https://i.ibb.co/FmcMgc1/21497308-597.jpg"
+    "https://i.ibb.co.com/bW573tS/carousel1.jpg", // Image 1
+    "https://i.ibb.co.com/hVY3TqP/carousel2.jpg", // Image 2
+    "https://i.ibb.co.com/c3DwZ6L/carousel3.jpg", // Image 3
+    "https://i.ibb.co.com/5rzySHQ/3185.jpg",
+    "https://i.ibb.co.com/5RW2wtP/6974.jpg",
+    "https://i.ibb.co.com/z735J86/10126.jpg",
+    "https://i.ibb.co.com/hVY3TqP/carousel2.jpg", // Image 2
+    "https://i.ibb.co.com/c3DwZ6L/carousel3.jpg",
+  
+    "https://i.ibb.co.com/bW573tS/carousel1.jpg",
+    "https://i.ibb.co.com/z735J86/10126.jpg"
      
   ];
 

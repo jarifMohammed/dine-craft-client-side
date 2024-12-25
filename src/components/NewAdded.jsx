@@ -41,52 +41,52 @@ export default function NewAdded() {
 
 const itemData = [
   {
-    img: 'https://images.unsplash.com/photo-1551963831-b3b1ca40c98e',
+    img:" https://i.ibb.co.com/hVY3TqP/carousel2.jpg",
     title: 'Breakfast',
-    author: '@bkristastucchio',
+    
     rows: 2,
     cols: 2,
     featured: true,
   },
   {
-    img: 'https://images.unsplash.com/photo-1551782450-a2132b4ba21d',
+    img: 'https://i.ibb.co.com/c3DwZ6L/carousel3.jpg',
     title: 'Burger',
-    author: '@rollelflex_graphy726',
+    
   },
   {
-    img: 'https://images.unsplash.com/photo-1522770179533-24471fcdba45',
+    img: 'https://i.ibb.co.com/6FkxDp4/2061.jpg',
     title: 'Buffet',
-    author: '@helloimnik',
+    
   },
   {
-    img: 'https://images.unsplash.com/photo-1444418776041-9c7e33cc5a9c',
+    img: 'https://i.ibb.co.com/HDFzhK2/rb-26851.png',
     title: 'Coffee',
     author: '@nolanissac',
     cols: 2,
   },
   {
-    img: 'https://images.unsplash.com/photo-1533827432537-70133748f5c8',
+    img: 'https://i.ibb.co.com/3Wgj6Wb/1719.jpg',
     title: 'Shripms',
-    author: '@hjrc33',
+    
     cols: 2,
   },
   {
-    img: 'https://images.unsplash.com/photo-1558642452-9d2a7deb7f62',
+    img: 'https://i.ibb.co.com/HDFzhK2/rb-26851.png',
     title: 'Latte',
-    author: '@arwinneil',
+   
     rows: 2,
     cols: 2,
     featured: true,
   },
   {
-    img: 'https://images.unsplash.com/photo-1516802273409-68526ee1bdd6',
+    img: 'https://i.ibb.co.com/kBx3xZC/rb-2147746471.png',
     title: 'Moca Almond',
-    author: '@tjdragotta',
+   
   },
   {
-    img: 'https://images.unsplash.com/photo-1518756131217-31eb79b20e8f',
+    img: 'https://i.ibb.co.com/c3DwZ6L/carousel3.jpg',
     title: 'Hot Dog',
-    author: '@katie_wasserman',
+   
   },
   
   
