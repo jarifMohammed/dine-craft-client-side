@@ -13,6 +13,7 @@ import Purchase from '../pages/Purchase'
 import MyOrders from '../pages/MyOrders'
 import AllOrders from '../pages/AllOrders'
 import PrivateRoute from './PrivateRoute'
+import GalleryPage from '../pages/GalleryPage'
 // import PrivateRoute from './PrivateRoute'
 
 
@@ -69,6 +70,10 @@ const router = createBrowserRouter([
         {
           path: '/all-orders',
           element: <AllOrders></AllOrders>
+        },
+        {
+          path: '/gallery',
+          element: <GalleryPage></GalleryPage>
         }
       
       

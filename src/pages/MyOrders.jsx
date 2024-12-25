@@ -3,6 +3,8 @@ import { Link } from "react-router-dom";
 import { AuthContext } from "../providers/AuthProvider";
 import axios from "axios";
 import toast from "react-hot-toast";
+import { Grid, Paper, Typography, Button, IconButton } from "@mui/material";
+import { Delete as DeleteIcon, Edit as EditIcon } from "@mui/icons-material";
 
 const MyOrders = () => {
   const { user } = useContext(AuthContext);
@@ -17,7 +19,7 @@ const MyOrders = () => {
   const fetchAllOrders = async () => {
     try {
       const { data } = await axios.get(
-        `${import.meta.env.VITE_URL}/orders/${user?.email}`,{withCredentials:true}
+        `${import.meta.env.VITE_URL}/orders/${user?.email}`, { withCredentials: true }
       );
       setOrders(data);
     } catch (error) {
@@ -25,129 +27,96 @@ const MyOrders = () => {
       toast.error("Failed to fetch your orders.");
     }
   };
-  // delete
+
+  // Delete order
   const handleDelete = async (id) => {
     try {
       await axios.delete(`${import.meta.env.VITE_URL}/orders/${id}`);
-      toast.success("Food item deleted successfully!");
+      toast.success("Order deleted successfully!");
       fetchAllOrders(); // Refresh the list after deletion
     } catch (error) {
-      console.error("Error deleting food:", error);
-      toast.error("Failed to delete the food item.");
+      console.error("Error deleting order:", error);
+      toast.error("Failed to delete the order.");
     }
   };
 
   return (
-    <section className="container px-4 mx-auto pt-12">
+    <section className="container px-4 mx-auto mt-20 pt-12">
       <div className="flex items-center gap-x-3">
-        <h2 className="text-lg font-medium text-gray-800">My Orders</h2>
-        <span className="px-3 py-1 text-xs text-blue-600 bg-blue-100 rounded-full">
+        <Typography variant="h6">My Orders</Typography>
+        <Typography
+          variant="body2"
+          color="primary"
+          sx={{
+            backgroundColor: 'rgba(59, 130, 246, 0.1)',
+            borderRadius: 12,
+            padding: '4px 12px',
+          }}
+        >
           {orders.length}
-        </span>
+        </Typography>
       </div>
 
-      <div className="flex flex-col mt-6">
-        <div className="-mx-4 -my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
-          <div className="inline-block min-w-full py-2 align-middle md:px-6 lg:px-8">
-            <div className="overflow-hidden border border-gray-200 md:rounded-lg">
-              <table className="min-w-full divide-y divide-gray-200">
-                <thead className="bg-gray-50">
-                  <tr>
-                    <th className="py-3.5 px-4 text-sm font-normal text-gray-500 text-left">
-                      Food Name
-                    </th>
-                    <th className="px-4 py-3.5 text-sm font-normal text-gray-500 text-left">
-                      Price
-                    </th>
-                    <th className="px-4 py-3.5 text-sm font-normal text-gray-500 text-left">
-                      Quantity
-                    </th>
-                    <th className="px-4 py-3.5 text-sm font-normal text-gray-500 text-left">
-                      Buyer Name
-                    </th>
-                    <th className="px-4 py-3.5 text-sm font-normal text-gray-500 text-left">
-                      Buying Date
-                    </th>
-                    <th className="px-4 py-3.5 text-sm font-normal text-gray-500 text-left">
-                      Actions
-                    </th>
-                  </tr>
-                </thead>
-                <tbody className="bg-white divide-y divide-gray-200">
-                  {orders.map((order) => (
-                    <tr key={order._id}>
-                      <td className="px-4 py-4 text-sm text-gray-700">
-                        {order.foodName}
-                      </td>
-                      <td className="px-4 py-4 text-sm text-gray-700">
-      {Number(order.price).toFixed(2)}
-    </td>
-                      <td className="px-4 py-4 text-sm text-gray-700">
-                        {order.quantity}
-                      </td>
-                      <td className="px-4 py-4 text-sm text-gray-700">
-                        {order.buyerName}
-                      </td>
-                      <td className="px-4 py-4 text-sm text-gray-700">
-                        {new Date(order.buyingDate).toLocaleDateString()}
-                      </td>
-                      <td className="px-4 py-4 text-sm">
-                        <div className="flex items-center gap-x-6">
-                          <button onClick={()=>handleDelete(order._id)} className="text-gray-500 hover:text-red-500 focus:outline-none">
-                            <svg
-                              xmlns="http://www.w3.org/2000/svg"
-                              fill="none"
-                              viewBox="0 0 24 24"
-                              strokeWidth="1.5"
-                              stroke="currentColor"
-                              className="w-5 h-5"
-                            >
-                              <path
-                                strokeLinecap="round"
-                                strokeLinejoin="round"
-                                d="M14.74 9l-.346 9m-4.788 0L9.26 9m9.968-3.21c.342.052.682.107 1.022.166m-1.022-.165L18.16 19.673a2.25 2.25 0 01-2.244 2.077H8.084a2.25 2.25 0 01-2.244-2.077L4.772 5.79m14.456 0a48.108 48.108 0 00-3.478-.397m-12 .562c.34-.059.68-.114 1.022-.165m0 0a48.11 48.11 0 013.478-.397m7.5 0v-.916c0-1.18-.91-2.164-2.09-2.201a51.964 51.964 0 00-3.32 0c-1.18.037-2.09 1.022-2.09 2.201v.916m7.5 0a48.667 48.667 0 00-7.5 0"
-                              />
-                            </svg>
-                          </button>
-                          <Link
-                            to="#"
-                            className="text-gray-500 hover:text-yellow-500 focus:outline-none"
-                          >
-                            <svg
-                              xmlns="http://www.w3.org/2000/svg"
-                              fill="none"
-                              viewBox="0 0 24 24"
-                              strokeWidth="1.5"
-                              stroke="currentColor"
-                              className="w-5 h-5"
-                            >
-                              <path
-                                strokeLinecap="round"
-                                strokeLinejoin="round"
-                                d="M16.862 4.487l1.687-1.688a1.875 1.875 0 112.652 2.652L10.582 16.07a4.5 4.5 0 01-1.897 1.13L6 18l.8-2.685a4.5 4.5 0 011.13-1.897l8.932-8.931zm0 0L19.5 7.125M18 14v4.75A2.25 2.25 0 0115.75 21H5.25A2.25 2.25 0 013 18.75V8.25A2.25 2.25 0 015.25 6H10"
-                              />
-                            </svg>
-                          </Link>
-                        </div>
-                      </td>
-                    </tr>
-                  ))}
-                  {orders.length === 0 && (
-                    <tr>
-                      <td
-                        colSpan="6"
-                        className="px-4 py-4 text-center text-sm text-gray-500"
+      <Grid container spacing={3} sx={{ mt: 4 }}>
+        {orders.length === 0 ? (
+          <Grid item xs={12}>
+            <Typography variant="body1" align="center" color="textSecondary">
+              No orders found.
+            </Typography>
+          </Grid>
+        ) : (
+          orders.map((order) => (
+            <Grid item xs={12} sm={6} md={4} key={order._id}>
+              <Paper sx={{ padding: 2 }}>
+                <Grid container spacing={2}>
+                  <Grid item xs={4}>
+                    <img
+                      src={order.image || "default-image.jpg"} // Use a default image if imageUrl is not available
+                      alt={order.foodName}
+                      style={{
+                        width: '100%',
+                        height: 'auto',
+                        objectFit: 'cover',
+                        borderRadius: 8,
+                      }}
+                    />
+                  </Grid>
+                  <Grid item xs={8}>
+                    <Typography variant="h6" component="div" gutterBottom>
+                      {order.foodName}
+                    </Typography>
+                    <Typography variant="body2" color="textSecondary">
+                      <strong>Price:</strong> ${order.price}
+                    </Typography>
+                    <Typography variant="body2" color="textSecondary">
+                      <strong>Quantity:</strong> {order.quantity}
+                    </Typography>
+                    <Typography variant="body2" color="textSecondary">
+                      <strong>Buyer:</strong> {order.buyerName}
+                    </Typography>
+                    <Typography variant="body2" color="textSecondary">
+                      <strong>Ordered On:</strong> {new Date(order.buyingDate).toLocaleDateString()}
+                    </Typography>
+                    <div style={{ marginTop: '16px' }}>
+                      <IconButton
+                        color="secondary"
+                        onClick={() => handleDelete(order._id)}
                       >
-                        No orders found.
-                      </td>
-                    </tr>
-                  )}
-                </tbody>
-              </table>
-            </div>
-          </div>
-        </div>
-      </div>
+                        <DeleteIcon />
+                      </IconButton>
+                      <Link  to="#" style={{ textDecoration: 'none' }}>
+                        <IconButton color="primary">
+                          <EditIcon />
+                        </IconButton>
+                      </Link>
+                    </div>
+                  </Grid>
+                </Grid>
+              </Paper>
+            </Grid>
+          ))
+        )}
+      </Grid>
     </section>
   );
 };

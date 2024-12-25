@@ -1,16 +1,48 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../providers/AuthProvider";
 import axios from "axios";
 import toast from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
 
 const AddFood = () => {
-    const navigate = useNavigate()
+  const navigate = useNavigate();
   const { user } = useContext(AuthContext);
-  
+
+  const [orders, setOrders] = useState([]);
+  const [isBuyer, setIsBuyer] = useState(false); // Track if the user is a buyer
+
+  useEffect(() => {
+    if (user?.email) {
+      fetchAllOrders();
+    }
+  }, [user]);
+
+  useEffect(() => {
+    if (isBuyer) {
+      toast.error("Customer cannot add food. You are listed as a buyer.");
+    }
+  }, [isBuyer]); // Only show toast when isBuyer is true
+
+  const fetchAllOrders = async () => {
+    try {
+      const { data } = await axios.get(
+        `${import.meta.env.VITE_URL}/orders/${user?.email}`,
+        { withCredentials: true }
+      );
+      setOrders(data);
+
+      // Check if the user is a buyer (if their email matches any in the orders)
+      const isBuyerEmail = data.some(order => order.buyerEmail === user.email);
+      setIsBuyer(isBuyerEmail);
+    } catch (error) {
+      console.error("Error fetching orders:", error);
+      toast.error("Failed to fetch your orders.");
+    }
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
-    
+
     const form = e.target;
     const name = form.foodName.value;
     const image = form.foodImage.value;
@@ -20,7 +52,7 @@ const AddFood = () => {
     const addedBy = form.addedBy.value; // Assuming the name and email come from the AuthContext
     const origin = form.foodOrigin.value;
     const description = form.description.value;
-    
+
     const formData = {
       name,
       image,
@@ -37,25 +69,26 @@ const AddFood = () => {
       total_sold: 0
     };
 
-    try{
-        // Send the formData to the backend via API call
-    const { data } = await axios.post(`${import.meta.env.VITE_URL}/add-foods`, formData,{withCredentials:true});
-    form.reset()
-    toast.success('Food Added Successfully')
-    navigate('/my-foods')
-    // console.log(data);
-
-    }catch(err){
-        toast.error('Failed to add Food')
-
+    try {
+      // Send the formData to the backend via API call
+      const { data } = await axios.post(
+        `${import.meta.env.VITE_URL}/add-foods`,
+        formData,
+        { withCredentials: true }
+      );
+      form.reset();
+      toast.success("Food Added Successfully");
+      navigate("/my-foods");
+    } catch (err) {
+      toast.error("Failed to add Food");
     }
   };
 
   return (
-    <div className="container mx-auto py-10">
+    <div className="container mx-auto p-10 m-20">
       <h2 className="text-3xl font-bold text-center mb-6">Add New Food</h2>
 
-      <form onSubmit={handleSubmit} className="bg-white p-8 rounded-lg shadow-lg space-y-4">
+      <form onSubmit={handleSubmit} className=" p-8 rounded-lg shadow-lg space-y-4">
         {/* Food Name */}
         <div>
           <label htmlFor="foodName" className="block text-lg font-medium mb-2">Food Name</label>
@@ -159,6 +192,7 @@ const AddFood = () => {
           <button
             type="submit"
             className="bg-blue-500 text-white py-3 px-6 rounded-lg"
+            disabled={isBuyer} // Disable button if user is a buyer
           >
             Add Item
           </button>

@@ -59,7 +59,7 @@ const UpdateFood = () => {
   };
 
   return (
-    <div className="container mx-auto p-8">
+    <div className="container mt-20 mx-auto p-8">
       <h2 className="text-3xl font-bold text-center mb-6">Update Food Item</h2>
       <form onSubmit={handleSubmit} className="space-y-4 bg-white p-8 rounded-lg shadow-lg">
         {/* Food Name */}

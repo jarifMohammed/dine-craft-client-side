@@ -63,6 +63,7 @@ const Purchase = () => {
     const purchaseData = {
       foodId: _id,
       foodName: name,
+      image,
       price,
       quantity: purchaseQuantity,
       buyerName: user?.displayName || "Anonymous",
@@ -83,9 +84,9 @@ const Purchase = () => {
   };
 
   return (
-    <div className="container mx-auto p-8">
+    <div className="container mx-auto m-20  p-8">
       {food && Object.keys(food).length > 0 ? (
-        <div className="max-w-4xl mx-auto bg-white rounded-lg shadow-lg overflow-hidden">
+        <div className="max-w-4xl mx-auto bg-slate-200 rounded-lg shadow-lg overflow-hidden">
           <div className="p-8">
             <h2 className="text-3xl font-bold text-gray-800 mb-6">Purchase Food</h2>
             <form onSubmit={handlePurchase}>

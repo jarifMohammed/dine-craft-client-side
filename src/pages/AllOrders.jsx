@@ -29,9 +29,9 @@ const AllOrders = () => {
     };
 
     return (
-        <section className="container px-4 mx-auto pt-12">
+        <section className="container mt-20 px-4 mx-auto pt-12">
             <div className="flex items-center gap-x-3">
-                <h2 className="text-lg font-medium text-gray-800">All Orders</h2>
+                <h2 className="text-lg font-medium text-orange-600">All Orders</h2>
                 <span className="px-3 py-1 text-xs text-blue-600 bg-blue-100 rounded-full">
                     {orderCount} Orders
                 </span>

@@ -1,8 +1,7 @@
-/* eslint-disable no-undef */
 /** @type {import('tailwindcss').Config} */
-import daisyui from 'daisyui';
 export default {
   content: ['./index.html', './src/**/*.{js,ts,jsx,tsx}'],
+  darkMode: 'class', // Enable dark mode via class
   theme: {
     extend: {
       fontFamily: {
@@ -10,5 +9,5 @@ export default {
       },
     },
   },
-  plugins: [daisyui],
+  plugins: [],
 }

@@ -28,7 +28,7 @@ const AllFoods = () => {
 
   return (
     <>
-      <div className="flex-1 bg-gray-100 py-8">
+      <div className="flex-1 mt-20 py-8">
         <h2 className="text-center text-4xl text-yellow-600 font-semibold mb-8">
           All Foods
         </h2>
@@ -55,7 +55,7 @@ const AllFoods = () => {
           {/* Reset Button */}
           <button
             onClick={handleReset}
-            className="btn px-4 py-2 bg-gray-700 text-white rounded-md hover:bg-gray-600"
+            className="btn px-4 py-2  bg-gray-700 text-white rounded-md hover:bg-gray-600"
           >
             Reset
           </button>
