@@ -1,6 +1,5 @@
 import { Link, useNavigate } from 'react-router-dom'
-import bgImg from '../../assets/images/register.png'
-import logo from '../../assets/images/logo.png'
+
 import { useContext } from 'react'
 import { AuthContext } from '../../providers/AuthProvider'
 import toast from 'react-hot-toast'
@@ -17,11 +16,11 @@ const Registration = () => {
     const name = form.name.value
     const photo = form.photo.value
     const pass = form.password.value
-    console.log({ email, pass, name, photo })
+    // console.log({ email, pass, name, photo })
     try {
       //2. User Registration
       const result = await createUser(email, pass)
-      console.log(result)
+      // console.log(result)
       await updateUserProfile(name, photo)
       setUser({ ...result.user, photoURL: photo, displayName: name })
       toast.success('Signup Successful')
@@ -50,7 +49,7 @@ const Registration = () => {
       <div className='flex w-full max-w-sm mx-auto overflow-hidden bg-white rounded-lg shadow-lg  lg:max-w-4xl '>
         <div className='w-full px-6 py-8 md:px-8 lg:w-1/2'>
           <div className='flex justify-center mx-auto'>
-            <img className='w-auto h-7 sm:h-8' src={logo} alt='' />
+          <iframe src="https://lottie.host/embed/7621fc2f-080b-4638-be40-950147f7e3fa/2z9bj4Stcu.lottie"></iframe>
           </div>
 
           <p className='mt-3 text-xl text-center text-gray-600 '>
@@ -184,12 +183,13 @@ const Registration = () => {
             <span className='w-1/5 border-b  md:w-1/4'></span>
           </div>
         </div>
-        <div
-          className='hidden bg-cover bg-center lg:block lg:w-1/2'
-          style={{
-            backgroundImage: `url(${bgImg})`,
-          }}
-        ></div>
+        <div className='hidden bg-cover bg-center lg:block lg:w-1/2'>
+  <iframe 
+    src="https://lottie.host/embed/54777bd9-8dfe-4809-99b7-13a0f4e5e3b2/BYArzjrkrz.lottie"
+    style={{ width: '100%', height: '500px' }} // Custom height and width
+  ></iframe>
+</div>
+
       </div>
     </div>
   )

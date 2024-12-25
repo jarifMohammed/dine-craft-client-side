@@ -1,7 +1,7 @@
 import React from "react";
 import { Link, useNavigate } from "react-router-dom";
 
-import bgimg1 from '../assets/images/carousel1.jpg';  // Imported image
+
 
 const Banner = () => {
 //   const navigate = useNavigate();
@@ -13,7 +13,7 @@ const Banner = () => {
   return (
     <div className="relative h-[500px]">
       <img
-        src={bgimg1}  // Use imported image here
+        src="https://i.ibb.co.com/bW573tS/carousel1.jpg"  // Use imported image here
         alt="Banner"
         className="w-full h-full object-cover"
       />

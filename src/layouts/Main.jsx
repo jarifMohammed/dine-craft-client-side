@@ -1,8 +1,7 @@
 import { Outlet } from 'react-router-dom'
 import Navbar from '../components/Navbar'
 import Footer from '../components/Footer'
-import ThemeToggleButton from '../components/ThemeToggleButton'
-import NewAdded from '../components/NewAdded'
+
 
 const Main = () => {
   return (

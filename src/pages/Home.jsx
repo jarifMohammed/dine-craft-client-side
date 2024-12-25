@@ -1,5 +1,6 @@
 import Banner from "../components/Banner";
 import Carousel from "../components/Carousel";
+
 import NewAdded from "../components/NewAdded";
 import Testimonials from "../components/Testimonials";
 import TopFoods from "../components/TopFoods";
@@ -7,7 +8,7 @@ import TopFoods from "../components/TopFoods";
 const Home = () => {
   return (
     <div>
-      {/* <Carousel /> */}
+      
       <Banner />
 
      <div className="">

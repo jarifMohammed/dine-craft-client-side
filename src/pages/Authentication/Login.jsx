@@ -1,6 +1,4 @@
 import { Link, useLocation, useNavigate } from 'react-router-dom'
-import bgImg from '../../assets/images/login.png'
-import logo from '../../assets/images/logo.png'
 import { useContext } from 'react'
 import { AuthContext } from '../../providers/AuthProvider'
 import toast from 'react-hot-toast'
@@ -9,16 +7,13 @@ const Login = () => {
   const navigate = useNavigate()
   const location = useLocation()
   const from = location?.state || '/'
-  console.log(from)
+  // console.log(from)
   const { signIn, signInWithGoogle } = useContext(AuthContext)
 
   // Google Signin
   const handleGoogleSignIn = async () => {
-
     try {
       await signInWithGoogle()
-      
-
       toast.success('Signin Successful')
       navigate(from, { replace: true })
     } catch (err) {
@@ -33,9 +28,9 @@ const Login = () => {
     const form = e.target
     const email = form.email.value
     const pass = form.password.value
-    console.log({ email, pass })
+    // console.log({ email, pass })
     try {
-      //User Login
+      // User Login
       await signIn(email, pass)
       toast.success('Signin Successful')
       navigate(from, { replace: true })
@@ -46,18 +41,19 @@ const Login = () => {
   }
 
   return (
-    <div className='flex justify-center items-center min-h-[calc(100vh-306px)] my-12'>
+    <div className='flex justify-center items-center min-h-[calc(100vh-306px)] m-20 p-10 '>
       <div className='flex w-full max-w-sm mx-auto overflow-hidden bg-white rounded-lg shadow-lg  lg:max-w-4xl '>
-        <div
-          className='hidden bg-cover bg-center lg:block lg:w-1/2'
-          style={{
-            backgroundImage: `url(${bgImg})`,
-          }}
-        ></div>
+        <div className='hidden w- lg:block lg:w-1/2'>
+          {/* Adjusting the iframe size to make it bigger */}
+          <iframe 
+            src="https://lottie.host/embed/54777bd9-8dfe-4809-99b7-13a0f4e5e3b2/BYArzjrkrz.lottie"
+            style={{ width: '100%', height: '500px' }} // Custom height and width
+          ></iframe>
+        </div>
 
         <div className='w-full px-6 py-8 md:px-8 lg:w-1/2'>
           <div className='flex justify-center mx-auto'>
-            <img className='w-auto h-7 sm:h-8' src={logo} alt='' />
+          <iframe src="https://lottie.host/embed/7621fc2f-080b-4638-be40-950147f7e3fa/2z9bj4Stcu.lottie"></iframe>
           </div>
 
           <p className='mt-3 text-xl text-center text-gray-600 '>

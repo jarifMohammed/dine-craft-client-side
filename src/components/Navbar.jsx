@@ -1,27 +1,31 @@
 import { useContext, useState } from 'react';
-import logo from '../assets/images/logo.png';
 import { AuthContext } from '../providers/AuthProvider';
 import { Link } from 'react-router-dom';
-import ThemeToggleButton from './ThemeToggleButton';
+import ThemeToggle from './ThemeToggle';
+
 
 const Navbar = () => {
   const { user, logOut } = useContext(AuthContext);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   return (
-    <div className="navbar gap-4 text-white fixed top-0  z-50 shadow-lg backdrop-blur-sm">
+    <div className="navbar gap-4 text-white fixed top-0 w-full z-50 shadow-lg backdrop-blur-sm flex justify-between items-center p-4">
       {/* Logo Section */}
-      <div className="flex">
+      <div className="flex gap-2 items-center">
         <Link to="/" className="flex gap-2 items-center">
-          <img className="w-14 h-14" src={logo} alt="Dine Craft Logo" />
+          <iframe
+            className="w-24 h-24"
+            src="https://lottie.host/embed/6938d288-8f3f-4d88-8a90-6761dbe5e52c/xdtZDy4UwB.lottie"
+          ></iframe>
           <span className="font-bold text-orange-600 text-xl">Dine Craft</span>
         </Link>
       </div>
 
-      {/* Theme Toggle */}
-      <div className="p-4">
-        <ThemeToggleButton />
+      <div>
+        <ThemeToggle></ThemeToggle>
       </div>
+
+     
 
       {/* Centered Links */}
       <div className="flex-1 flex justify-center lg:justify-center">
@@ -38,16 +42,19 @@ const Navbar = () => {
         {/* Links for Larger Screens */}
         <ul
           className={`menu menu-horizontal px-1 lg:flex ${
-            isMenuOpen ? "block" : "hidden"
+            isMenuOpen ? 'block' : 'hidden'
           } lg:block`}
         >
           <li>
-            <Link to="/" className="hover:text-blue-200 text-orange-700 text-bold text-lg ">
+            <Link to="/" className="hover:text-blue-200 text-orange-700 text-bold text-lg">
               Home
             </Link>
           </li>
           <li>
-            <Link to="/all-foods" className="hover:text-blue-200 text-orange-700 text-bold text-lg">
+            <Link
+              to="/all-foods"
+              className="hover:text-blue-200 text-orange-700 text-bold text-lg"
+            >
               All Foods
             </Link>
           </li>
@@ -64,19 +71,15 @@ const Navbar = () => {
         {!user && (
           <ul className="menu menu-horizontal px-1">
             <li>
-              <Link to="/login" className="hover:text-blue-200">
+              <Link to="/login" className="text-orange-950 text-bold text-2xl hover:text-blue-200">
                 Login
               </Link>
             </li>
           </ul>
         )}
         {user && (
-          <div className="dropdown dropdown-end z-50 p-4 ">
-            <div
-              tabIndex={0}
-              role="button"
-              className="btn btn-ghost btn-circle avatar"
-            >
+          <div className="dropdown dropdown-end z-50 p-4">
+            <div tabIndex={0} role="button" className="btn btn-ghost btn-circle avatar">
               <div title={user?.displayName} className="w-14 rounded-full">
                 <img
                   referrerPolicy="no-referrer"
@@ -104,10 +107,7 @@ const Navbar = () => {
                 <Link to="/all-orders">All Orders (for admin)</Link>
               </li>
               <li className="mt-2">
-                <button
-                  onClick={logOut}
-                  className=" block text-center w-full rounded"
-                >
+                <button onClick={logOut} className="block text-center w-full rounded">
                   Logout
                 </button>
               </li>

@@ -14,7 +14,7 @@ import MyOrders from '../pages/MyOrders'
 import AllOrders from '../pages/AllOrders'
 import PrivateRoute from './PrivateRoute'
 import GalleryPage from '../pages/GalleryPage'
-// import PrivateRoute from './PrivateRoute'
+
 
 
 
