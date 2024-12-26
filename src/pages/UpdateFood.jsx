@@ -71,7 +71,7 @@ const UpdateFood = () => {
             type="text"
             defaultValue={food.name}
             required
-            className="w-full p-3 border border-gray-300 rounded-md"
+            className="w-full text-pink-800 p-3 border border-gray-300 rounded-md"
           />
         </div>
 
@@ -84,7 +84,7 @@ const UpdateFood = () => {
             type="text"
             defaultValue={food.image}
             required
-            className="w-full p-3 border border-gray-300 rounded-md"
+            className="w-full p-3 text-pink-800 border border-gray-300 rounded-md"
           />
         </div>
 
@@ -97,7 +97,7 @@ const UpdateFood = () => {
             type="text"
             defaultValue={food.category}
             required
-            className="w-full p-3 border border-gray-300 rounded-md"
+            className="w-full p-3 text-pink-800 border border-gray-300 rounded-md"
           />
         </div>
 
@@ -110,7 +110,7 @@ const UpdateFood = () => {
             type="number"
             defaultValue={food.quantity}
             required
-            className="w-full p-3 border border-gray-300 rounded-md"
+            className="w-full p-3 text-pink-800 border border-gray-300 rounded-md"
           />
         </div>
 
@@ -124,7 +124,7 @@ const UpdateFood = () => {
             step="0.01"
             defaultValue={food.price}
             required
-            className="w-full p-3 border border-gray-300 rounded-md"
+            className="w-full p-3 text-pink-800 border border-gray-300 rounded-md"
           />
         </div>
 
@@ -137,7 +137,7 @@ const UpdateFood = () => {
             type="text"
             defaultValue={user?.email || ""}
             disabled
-            className="w-full p-3 border border-gray-300 rounded-md bg-gray-100"
+            className="w-full p-3 text-pink-800 border border-gray-300 rounded-md bg-gray-100"
           />
         </div>
 
@@ -150,7 +150,7 @@ const UpdateFood = () => {
             type="text"
             defaultValue={food.origin}
             required
-            className="w-full p-3 border border-gray-300 rounded-md"
+            className="w-full p-3 text-pink-800 border border-gray-300 rounded-md"
           />
         </div>
 
@@ -162,7 +162,7 @@ const UpdateFood = () => {
             name="description"
             defaultValue={food.description}
             required
-            className="w-full p-3 border border-gray-300 rounded-md"
+            className="w-full p-3 text-pink-800 border border-gray-300 rounded-md"
             rows="4"
           />
         </div>

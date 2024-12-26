@@ -97,7 +97,7 @@ const AddFood = () => {
             name="foodName"
             type="text"
             placeholder="Enter food name"
-            className="w-full p-3 border border-gray-300 rounded-md"
+            className="w-full p-3 border border-gray-300 text-pink-800 rounded-md"
           />
         </div>
 
@@ -109,7 +109,7 @@ const AddFood = () => {
             name="foodImage"
             type="text"
             placeholder="Enter image URL"
-            className="w-full p-3 border border-gray-300 rounded-md"
+            className="w-full text-pink-800 p-3 border border-gray-300 rounded-md"
           />
         </div>
 
@@ -121,7 +121,7 @@ const AddFood = () => {
             name="foodCategory"
             type="text"
             placeholder="Enter food category"
-            className="w-full p-3 border border-gray-300 rounded-md"
+            className="w-full text-pink-800 p-3 border border-gray-300 rounded-md"
           />
         </div>
 
@@ -133,7 +133,7 @@ const AddFood = () => {
             name="quantity"
             type="number"
             placeholder="Enter quantity"
-            className="w-full p-3 border border-gray-300 rounded-md"
+            className="w-full p-3 text-pink-800 border border-gray-300 rounded-md"
           />
         </div>
 
@@ -146,7 +146,7 @@ const AddFood = () => {
             type="number"
             step="0.01"
             placeholder="Enter price in USD"
-            className="w-full p-3 border border-gray-300 rounded-md"
+            className="w-full p-3 text-pink-800 border border-gray-300 rounded-md"
           />
         </div>
 
@@ -159,7 +159,7 @@ const AddFood = () => {
             type="text"
             defaultValue={user.email}
             disabled
-            className="w-full p-3 border border-gray-300 rounded-md bg-gray-100"
+            className="w-full p-3 border text-pink-800 border-gray-300 rounded-md bg-gray-100"
           />
         </div>
 
@@ -171,7 +171,7 @@ const AddFood = () => {
             name="foodOrigin"
             type="text"
             placeholder="Enter food origin country"
-            className="w-full p-3 border border-gray-300 rounded-md"
+            className="w-full p-3 border text-pink-800 border-gray-300 rounded-md"
           />
         </div>
 
@@ -182,7 +182,7 @@ const AddFood = () => {
             id="description"
             name="description"
             placeholder="Enter description (ingredients, making procedure, etc.)"
-            className="w-full p-3 border border-gray-300 rounded-md"
+            className="w-full p-3 border text-pink-800 border-gray-300 rounded-md"
             rows="4"
           />
         </div>

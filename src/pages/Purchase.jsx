@@ -91,7 +91,7 @@ const Purchase = () => {
             <h2 className="text-3xl font-bold text-gray-800 mb-6">Purchase Food</h2>
             <form onSubmit={handlePurchase}>
               {/* Food Name */}
-              <div className="mb-4">
+              <div className="mb-4 text-pink-900">
                 <label className="block text-lg font-semibold text-gray-700">Food Name</label>
                 <input
                   type="text"
@@ -102,7 +102,7 @@ const Purchase = () => {
               </div>
 
               {/* Price */}
-              <div className="mb-4">
+              <div className="mb-4 text-pink-900">
                 <label className="block text-lg font-semibold text-gray-700">Price</label>
                 <input
                   type="text"
@@ -113,7 +113,7 @@ const Purchase = () => {
               </div>
 
               {/* Available Quantity */}
-              <div className="mb-4">
+              <div className="mb-4 text-pink-900">
                 <label className="block text-lg font-semibold text-gray-700">Available Quantity</label>
                 <input
                   type="number"
@@ -124,7 +124,7 @@ const Purchase = () => {
               </div>
 
               {/* Purchase Quantity */}
-              <div className="mb-4">
+              <div className="mb-4 text-pink-900">
                 <label className="block text-lg font-semibold text-gray-700">Purchase Quantity</label>
                 <input
                   type="number"
@@ -137,7 +137,7 @@ const Purchase = () => {
               </div>
 
               {/* Buyer Name */}
-              <div className="mb-4">
+              <div className="mb-4 text-pink-900">
                 <label className="block text-lg font-semibold text-gray-700">Buyer Name</label>
                 <input
                   type="text"
@@ -148,7 +148,7 @@ const Purchase = () => {
               </div>
 
               {/* Buyer Email */}
-              <div className="mb-4">
+              <div className="mb-4 text-pink-900">
                 <label className="block text-lg font-semibold text-gray-700">Buyer Email</label>
                 <input
                   type="email"
@@ -159,7 +159,7 @@ const Purchase = () => {
               </div>
 
               {/* Buying Date */}
-              <div className="mb-4">
+              <div className="mb-4 text-pink-900">
                 <label className="block text-lg font-semibold text-gray-700">Buying Date</label>
                 <input
                   type="text"
